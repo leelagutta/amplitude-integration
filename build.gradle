@@ -35,5 +35,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
     testCompile("junit:junit")
+
+    compile("com.googlecode.json-simple:json-simple:1.1.1")
 }
 
