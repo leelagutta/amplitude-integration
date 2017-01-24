@@ -1,3 +1,12 @@
+
+
+def MISC = ["org.projectlombok:lombok:1.16.6",
+            "com.googlecode.json-simple:json-simple:1.1.1",
+            "com.google.code.gson:gson:2.2.4"]
+
+def SPRING = ["org.springframework.amqp:spring-rabbit:1.5.1.RELEASE",
+              "org.springframework.amqp:spring-amqp:1.5.1.RELEASE"]
+
 dependencies {
-    
+    compile MISC, SPRING
 }

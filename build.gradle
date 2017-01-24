@@ -2,6 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
     }
+
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
     }
@@ -11,10 +12,16 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply from: 'gradle/dependencies.gradle'
+group 'com.amplitude'
 
 jar {
     baseName = 'gs-spring-boot'
     version =  '0.1.0'
+}
+
+springBoot {
+    mainClass = "Application"
 }
 
 repositories {
@@ -23,6 +30,9 @@ repositories {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+
+
 
 dependencies {
     // tag::jetty[]
@@ -35,7 +45,5 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
     testCompile("junit:junit")
-
-    compile("com.googlecode.json-simple:json-simple:1.1.1")
 }
 
