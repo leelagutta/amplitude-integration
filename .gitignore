@@ -1,3 +1,4 @@
 amplitude-integration.*
 .DS_Store*
 .gradle*
+/out
