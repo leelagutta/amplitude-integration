@@ -12,6 +12,7 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,6 +41,12 @@ public class RabbitMqConfig {
     @Getter
     @Value("${rabbitMQPassword}")
     private String password;
+
+    @Value("${amplitude-data.exchange}")
+    private String amplitudeConfigExchange;
+
+    @Value("${amplitude-data.queue}")
+    private String amplitudeConfigRequestQueue;
 
     public RabbitMqConfig() {
 //        log.info("RabbitMQConfig starting");
@@ -80,6 +87,8 @@ public class RabbitMqConfig {
         RabbitTemplate template = new RabbitTemplate(rabbitConnectionFactory());
         template.setMandatory(true);
         template.setChannelTransacted(true);
+        template.setQueue(amplitudeConfigRequestQueue);
+        template.setExchange(amplitudeConfigExchange);
         Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
         template.setMessageConverter(converter);
         return template;

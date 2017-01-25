@@ -15,6 +15,6 @@ public class AmplitudeProducer {
     }
 
     public void sendMessage(String m) {
-        rabbitTemplate.convertAndSend(m);
+        rabbitTemplate.convertAndSend("message");
     }
 }
